@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_api_prac/components/bottom_navi_bar.dart';
+import 'package:flutter_api_prac/model/bottom_navi_bar_model.dart';
+import 'package:flutter_api_prac/view/home_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -13,9 +16,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'API Training'),
     );
   }
 }
@@ -27,11 +30,22 @@ class MyHomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final BottomNaviBarModel bottomNaviBarModel =
+        ref.watch(bottomNaviBarProvider);
     return Scaffold(
       appBar: AppBar(title: Text(title)),
-      body: const Center(
-        child: Text(
-          'Test mkahrjavnjil njilrvnvanj'))
+      bottomNavigationBar:
+          BottomNaviBar(bottomNaviBarModel: bottomNaviBarModel),
+      body: PageView(
+        controller: bottomNaviBarModel.pageController,
+        onPageChanged: (index) =>
+            bottomNaviBarModel.onPageChanged(index: index),
+        //childrenの数はElementsの数
+        children: const [
+          //注意：ページじゃないのでScaffold
+          HomeScreen()
+        ],
+      ),
     );
   }
 }
