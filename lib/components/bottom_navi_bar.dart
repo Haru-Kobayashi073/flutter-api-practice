@@ -9,7 +9,7 @@ class BottomNaviBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<BottomNavigationBarItem> bottomNavigationBarElements = [
       const BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
-      const BottomNavigationBarItem(icon: Icon(Icons.search), label: ''),
+      const BottomNavigationBarItem(icon: Icon(Icons.sunny), label: ''),
       const BottomNavigationBarItem(icon: Icon(Icons.article), label: ''),
       const BottomNavigationBarItem(icon: Icon(Icons.person), label: ''),
     ];

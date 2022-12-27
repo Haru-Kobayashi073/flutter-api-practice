@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_api_prac/components/bottom_navi_bar.dart';
 import 'package:flutter_api_prac/model/bottom_navi_bar_model.dart';
 import 'package:flutter_api_prac/view/home_screen.dart';
+import 'package:flutter_api_prac/view/weather/weather_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 void main() {
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.teal,
@@ -41,9 +43,10 @@ class MyHomePage extends ConsumerWidget {
         onPageChanged: (index) =>
             bottomNaviBarModel.onPageChanged(index: index),
         //childrenの数はElementsの数
-        children: const [
+        children: [
           //注意：ページじゃないのでScaffold
-          HomeScreen()
+          HomeScreen(),
+          WeatherScreen()
         ],
       ),
     );
